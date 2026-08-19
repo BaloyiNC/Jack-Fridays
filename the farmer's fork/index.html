@@ -1,0 +1,1738 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>The Farmer's Fork — Restaurant & Tapas Bar | Pretoria</title>
+  <meta name="description" content="The Farmer's Fork — A trendy Restaurant & Tapas Bar at Kimiad Golf Course, Moreleta Park, Pretoria. Serving breakfast to dinner, Tues–Sat 8am–8pm, Sun 10am–3pm." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    /* ─── TOKEN SYSTEM ──────────────────────────────────────────────── */
+    :root {
+      --forest:    #1C2B14;
+      --forest-mid:#2A4020;
+      --sage:      #6B7A50;
+      --gold:      #C8902A;
+      --gold-lt:   #E5B05A;
+      --parchment: #F0E8D5;
+      --cream:     #F7F2E8;
+      --espresso:  #3D2B1A;
+      --stone:     #B5A98A;
+
+      --font-display: 'Cormorant Garamond', Georgia, serif;
+      --font-body:    'Jost', system-ui, sans-serif;
+
+      --ease: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      --nav-h: 80px;
+    }
+
+    /* ─── RESET ─────────────────────────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; font-size: 16px; }
+    body {
+      font-family: var(--font-body);
+      background: var(--cream);
+      color: var(--espresso);
+      overflow-x: hidden;
+    }
+    img { display: block; max-width: 100%; }
+    a { text-decoration: none; color: inherit; }
+
+    /* ─── NAV ───────────────────────────────────────────────────────── */
+    #nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      height: var(--nav-h);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 3rem;
+      transition: background 0.45s var(--ease), box-shadow 0.45s var(--ease);
+    }
+    #nav.scrolled {
+      background: var(--forest);
+      box-shadow: 0 2px 24px rgba(0,0,0,0.35);
+    }
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      opacity: 0;
+      transition: opacity 0.4s var(--ease);
+      pointer-events: none;
+    }
+    #nav.scrolled .nav-logo { opacity: 1; pointer-events: auto; }
+    .nav-logo img {
+      height: 54px;
+      width: 54px;
+      border-radius: 50%;
+      object-fit: cover;
+      display: block;
+    }
+    .nav-links {
+      display: flex;
+      gap: 2.5rem;
+      list-style: none;
+    }
+    .nav-links a {
+      font-family: var(--font-body);
+      font-size: 0.75rem;
+      font-weight: 500;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: #fff;
+      opacity: 0.85;
+      transition: opacity 0.2s;
+    }
+    .nav-links a:hover { opacity: 1; color: var(--gold-lt); }
+
+    .nav-cta {
+      font-family: var(--font-body);
+      font-size: 0.72rem;
+      font-weight: 500;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--forest);
+      background: var(--gold);
+      padding: 0.6rem 1.4rem;
+      border-radius: 2px;
+      transition: background 0.2s;
+    }
+    .nav-cta:hover { background: var(--gold-lt); }
+
+    /* Mobile hamburger */
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      background: none;
+      border: none;
+      padding: 4px;
+    }
+    .hamburger span {
+      display: block;
+      width: 24px; height: 2px;
+      background: #fff;
+      transition: transform 0.3s, opacity 0.3s;
+    }
+    .mobile-menu {
+      display: none;
+      position: fixed;
+      top: var(--nav-h);
+      left: 0; right: 0;
+      background: var(--forest);
+      padding: 2rem;
+      flex-direction: column;
+      gap: 1.5rem;
+      z-index: 99;
+    }
+    .mobile-menu.open { display: flex; }
+    .mobile-menu a {
+      font-family: var(--font-body);
+      font-size: 0.85rem;
+      font-weight: 500;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--cream);
+    }
+
+    /* ─── HERO ──────────────────────────────────────────────────────── */
+    #hero {
+      position: relative;
+      height: 100vh;
+      min-height: 640px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      background: url('Gallery/Cover.jpeg') center/cover no-repeat;
+      transform: scale(1.06);
+      transition: transform 12s ease;
+    }
+    #hero:hover .hero-bg { transform: scale(1.0); }
+    .hero-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        to bottom,
+        rgba(15,28,10,0.55) 0%,
+        rgba(15,28,10,0.35) 40%,
+        rgba(15,28,10,0.65) 100%
+      );
+    }
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      text-align: center;
+      color: #fff;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1.25rem;
+    }
+    .hero-est {
+      font-family: var(--font-body);
+      font-size: 0.68rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--stone);
+      display: flex;
+      align-items: center;
+      gap: 0.9rem;
+    }
+    .hero-est::before, .hero-est::after {
+      content: '';
+      width: 40px; height: 1px;
+      background: var(--stone);
+    }
+
+    /* SVG Fork Emblem */
+    .fork-emblem {
+      width: 64px;
+      opacity: 0.95;
+    }
+
+    .hero-title {
+      font-family: var(--font-display);
+      font-size: clamp(3.2rem, 8vw, 7rem);
+      font-weight: 400;
+      line-height: 0.92;
+      letter-spacing: -0.01em;
+      color: #fff;
+    }
+    .hero-title em {
+      font-style: italic;
+      font-weight: 300;
+      color: rgba(255,255,255,0.88);
+    }
+    .hero-subtitle {
+      font-family: var(--font-body);
+      font-size: 0.72rem;
+      letter-spacing: 0.32em;
+      text-transform: uppercase;
+      color: var(--stone);
+    }
+    .hero-divider {
+      width: 1px;
+      height: 36px;
+      background: linear-gradient(to bottom, transparent, var(--stone), transparent);
+    }
+    .hero-tagline {
+      font-family: var(--font-display);
+      font-style: italic;
+      font-size: 1.25rem;
+      color: rgba(255,255,255,0.82);
+      font-weight: 300;
+    }
+    .hero-actions {
+      display: flex;
+      gap: 1.2rem;
+      margin-top: 0.5rem;
+    }
+    .btn-primary {
+      font-family: var(--font-body);
+      font-size: 0.72rem;
+      font-weight: 500;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      background: var(--gold);
+      color: var(--forest);
+      padding: 0.85rem 2.2rem;
+      border: none;
+      border-radius: 2px;
+      cursor: pointer;
+      transition: background 0.2s, transform 0.2s;
+    }
+    .btn-primary:hover { background: var(--gold-lt); transform: translateY(-1px); }
+    .btn-outline {
+      font-family: var(--font-body);
+      font-size: 0.72rem;
+      font-weight: 500;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      background: transparent;
+      color: #fff;
+      padding: 0.85rem 2.2rem;
+      border: 1px solid rgba(255,255,255,0.45);
+      border-radius: 2px;
+      cursor: pointer;
+      transition: border-color 0.2s, background 0.2s;
+    }
+    .btn-outline:hover {
+      border-color: rgba(255,255,255,0.8);
+      background: rgba(255,255,255,0.08);
+    }
+
+    .hero-scroll {
+      position: absolute;
+      bottom: 2.5rem;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.5rem;
+      color: rgba(255,255,255,0.5);
+      font-size: 0.6rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+    }
+    .hero-scroll-line {
+      width: 1px;
+      height: 40px;
+      background: linear-gradient(to bottom, rgba(255,255,255,0.5), transparent);
+      animation: scrollPulse 2s ease-in-out infinite;
+    }
+    @keyframes scrollPulse {
+      0%, 100% { opacity: 0.5; }
+      50% { opacity: 1; }
+    }
+
+    /* ─── SECTION SCAFFOLD ──────────────────────────────────────────── */
+    section { position: relative; }
+    .container { max-width: 1160px; margin: 0 auto; padding: 0 2rem; }
+
+    /* Signature decorative divider – crossed forks SVG between sections */
+    .fork-divider {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 2.8rem 0 0;
+      gap: 1.5rem;
+    }
+    .fork-divider::before, .fork-divider::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: linear-gradient(to right, transparent, var(--stone));
+    }
+    .fork-divider::after {
+      background: linear-gradient(to left, transparent, var(--stone));
+    }
+    .fork-divider-icon {
+      width: 36px;
+      opacity: 0.55;
+    }
+    .section-eyebrow {
+      font-family: var(--font-body);
+      font-size: 0.65rem;
+      font-weight: 500;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: var(--gold);
+      text-align: center;
+      margin-bottom: 0.75rem;
+    }
+    .section-heading {
+      font-family: var(--font-display);
+      font-size: clamp(2.4rem, 4.5vw, 3.8rem);
+      font-weight: 400;
+      line-height: 1.05;
+      text-align: center;
+      color: var(--espresso);
+    }
+    .section-heading em {
+      font-style: italic;
+      font-weight: 300;
+    }
+    .section-heading.light { color: var(--cream); }
+    .section-intro {
+      font-size: 1.05rem;
+      line-height: 1.8;
+      color: #6e5a45;
+      text-align: center;
+      max-width: 580px;
+      margin: 1.4rem auto 0;
+      font-weight: 300;
+    }
+    .section-intro.light { color: var(--stone); }
+
+    /* ─── ABOUT ─────────────────────────────────────────────────────── */
+    #about {
+      background: var(--cream);
+      padding: 6rem 0 5rem;
+    }
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5rem;
+      align-items: center;
+      margin-top: 4rem;
+    }
+    .about-image-wrap {
+      position: relative;
+    }
+    .about-image-wrap img {
+      width: 100%;
+      height: 540px;
+      object-fit: cover;
+      border-radius: 1px;
+    }
+    .about-image-badge {
+      position: absolute;
+      bottom: -20px;
+      right: -20px;
+      width: 130px;
+      height: 130px;
+      background: var(--forest);
+      border-radius: 50%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 2px;
+    }
+    .about-image-badge-year {
+      font-family: var(--font-display);
+      font-size: 1.9rem;
+      font-weight: 600;
+      color: var(--gold);
+      line-height: 1;
+    }
+    .about-image-badge-label {
+      font-family: var(--font-body);
+      font-size: 0.52rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--stone);
+    }
+    .about-text { padding-right: 1rem; }
+    .about-eyebrow {
+      font-family: var(--font-body);
+      font-size: 0.65rem;
+      font-weight: 500;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 1rem;
+    }
+    .about-heading {
+      font-family: var(--font-display);
+      font-size: clamp(2rem, 3.5vw, 3rem);
+      font-weight: 400;
+      line-height: 1.1;
+      color: var(--espresso);
+      margin-bottom: 1.8rem;
+    }
+    .about-heading em {
+      font-style: italic;
+      color: var(--sage);
+    }
+    .about-body {
+      font-size: 1rem;
+      line-height: 1.85;
+      color: #6e5a45;
+      font-weight: 300;
+      margin-bottom: 1.4rem;
+    }
+    .about-stats {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+      margin-top: 2.5rem;
+      padding-top: 2.5rem;
+      border-top: 1px solid rgba(107,122,80,0.2);
+    }
+    .stat-num {
+      font-family: var(--font-display);
+      font-size: 2.4rem;
+      font-weight: 500;
+      color: var(--forest);
+      line-height: 1;
+    }
+    .stat-label {
+      font-family: var(--font-body);
+      font-size: 0.68rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--stone);
+      margin-top: 0.3rem;
+    }
+
+    /* ─── MENU ──────────────────────────────────────────────────────── */
+    #menu {
+      background: var(--forest);
+      padding: 6rem 0 7rem;
+    }
+    .menu-tabs {
+      display: flex;
+      justify-content: center;
+      gap: 0;
+      margin: 3rem 0 3.5rem;
+      border-bottom: 1px solid rgba(255,255,255,0.12);
+    }
+    .tab-btn {
+      font-family: var(--font-body);
+      font-size: 0.72rem;
+      font-weight: 500;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--stone);
+      background: none;
+      border: none;
+      padding: 0.9rem 2rem;
+      cursor: pointer;
+      position: relative;
+      transition: color 0.25s;
+    }
+    .tab-btn::after {
+      content: '';
+      position: absolute;
+      bottom: -1px; left: 0; right: 0;
+      height: 2px;
+      background: var(--gold);
+      transform: scaleX(0);
+      transition: transform 0.3s var(--ease);
+    }
+    .tab-btn.active { color: var(--cream); }
+    .tab-btn.active::after { transform: scaleX(1); }
+    .tab-btn:hover { color: var(--cream); }
+
+    .tab-panel { display: none; }
+    .tab-panel.active { display: grid; }
+
+    .menu-grid {
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 1px;
+      background: rgba(255,255,255,0.06);
+    }
+    .menu-item {
+      background: var(--forest);
+      padding: 2rem 2.2rem;
+      transition: background 0.25s;
+    }
+    .menu-item:hover { background: var(--forest-mid); }
+    .menu-item-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      margin-bottom: 0.5rem;
+    }
+    .menu-item-name {
+      font-family: var(--font-display);
+      font-size: 1.3rem;
+      font-weight: 500;
+      color: var(--cream);
+    }
+    .menu-item-price {
+      font-family: var(--font-display);
+      font-size: 1.1rem;
+      font-weight: 400;
+      color: var(--gold);
+      white-space: nowrap;
+      margin-left: 1rem;
+    }
+    .menu-item-desc {
+      font-size: 0.88rem;
+      line-height: 1.65;
+      color: var(--stone);
+      font-weight: 300;
+    }
+    .menu-item-tag {
+      display: inline-block;
+      font-size: 0.58rem;
+      font-weight: 500;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--forest);
+      background: var(--gold);
+      padding: 0.2rem 0.5rem;
+      border-radius: 1px;
+      margin-top: 0.6rem;
+    }
+    .menu-note {
+      text-align: center;
+      color: var(--stone);
+      font-size: 0.82rem;
+      margin-top: 3rem;
+      font-style: italic;
+      font-family: var(--font-display);
+      font-weight: 300;
+    }
+
+    /* ─── GALLERY ───────────────────────────────────────────────────── */
+    #gallery {
+      background: var(--parchment);
+      padding: 6rem 0 5rem;
+    }
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr;
+      grid-template-rows: 1fr 1fr;
+      gap: 6px;
+      margin-top: 3.5rem;
+      height: 600px;
+    }
+    .gallery-item {
+      overflow: hidden;
+      position: relative;
+    }
+    .gallery-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: fill;
+      transition: transform 0.6s var(--ease);
+    }
+    .gallery-item:hover img { transform: scale(1.04); }
+    .gallery-item--main { grid-row: 1 / 3; }
+    .gallery-caption {
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      padding: 1rem 1.2rem 0.8rem;
+      background: linear-gradient(to top, rgba(15,28,10,0.7), transparent);
+      color: var(--cream);
+      font-family: var(--font-display);
+      font-style: italic;
+      font-size: 0.95rem;
+      font-weight: 300;
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+    .gallery-item:hover .gallery-caption { opacity: 1; }
+
+    /* ─── EVENTS ────────────────────────────────────────────────────── */
+    #events {
+      position: relative;
+      min-height: 560px;
+      display: flex;
+      align-items: center;
+    }
+    .events-bg {
+      position: absolute;
+      inset: 0;
+      background: url('Gallery/Scenery_2.jpg') center/cover no-repeat;
+    }
+    .events-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        135deg,
+        rgba(15,28,10,0.88) 0%,
+        rgba(15,28,10,0.65) 100%
+      );
+    }
+    .events-content {
+      position: relative;
+      z-index: 2;
+      max-width: 600px;
+      padding: 6rem 0;
+    }
+    .events-eyebrow {
+      font-family: var(--font-body);
+      font-size: 0.65rem;
+      font-weight: 500;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 1rem;
+    }
+    .events-heading {
+      font-family: var(--font-display);
+      font-size: clamp(2.4rem, 4vw, 3.5rem);
+      font-weight: 400;
+      color: var(--cream);
+      line-height: 1.08;
+      margin-bottom: 1.5rem;
+    }
+    .events-heading em {
+      font-style: italic;
+      color: rgba(255,255,255,0.75);
+    }
+    .events-body {
+      font-size: 1rem;
+      line-height: 1.8;
+      color: var(--stone);
+      font-weight: 300;
+      margin-bottom: 2rem;
+    }
+    .events-features {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+      margin-bottom: 2.5rem;
+    }
+    .events-feature {
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+      font-size: 0.88rem;
+      color: rgba(255,255,255,0.8);
+    }
+    .events-feature::before {
+      content: '';
+      width: 20px; height: 1px;
+      background: var(--gold);
+      flex-shrink: 0;
+    }
+
+    /* ─── FIND US ───────────────────────────────────────────────────── */
+    #find-us {
+      background: var(--cream);
+      padding: 6rem 0;
+    }
+    .find-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5rem;
+      align-items: start;
+      margin-top: 4rem;
+    }
+    .hours-card {
+      background: var(--forest);
+      border-radius: 2px;
+      padding: 3rem;
+      color: var(--cream);
+    }
+    .hours-card-title {
+      font-family: var(--font-display);
+      font-size: 1.6rem;
+      font-weight: 500;
+      margin-bottom: 2rem;
+      color: var(--cream);
+    }
+    .hours-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0.85rem 0;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+      font-size: 0.9rem;
+    }
+    .hours-row:last-of-type { border-bottom: none; }
+    .hours-day { color: var(--stone); font-weight: 300; }
+    .hours-time { color: var(--cream); font-weight: 400; }
+    .hours-closed { color: var(--gold); font-weight: 400; }
+    .contact-block { display: flex; flex-direction: column; gap: 1.5rem; }
+    .contact-heading {
+      font-family: var(--font-display);
+      font-size: 1.6rem;
+      font-weight: 500;
+      color: var(--espresso);
+      margin-bottom: 0.5rem;
+    }
+    .contact-detail {
+      display: flex;
+      gap: 1rem;
+      align-items: flex-start;
+    }
+    .contact-icon {
+      width: 40px;
+      height: 40px;
+      background: var(--parchment);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    .contact-icon svg { width: 18px; height: 18px; }
+    .contact-label {
+      font-size: 0.65rem;
+      font-weight: 500;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--sage);
+      margin-bottom: 0.2rem;
+    }
+    .contact-value {
+      font-size: 0.95rem;
+      font-weight: 400;
+      color: var(--espresso);
+      line-height: 1.5;
+    }
+
+    /* Map placeholder */
+    .map-placeholder {
+      margin-top: 4rem;
+      height: 320px;
+      background: var(--parchment);
+      border-radius: 2px;
+      overflow: hidden;
+      position: relative;
+    }
+    .map-placeholder iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
+
+    /* ─── RESERVATIONS ──────────────────────────────────────────────── */
+    #reservations {
+      background: var(--parchment);
+      padding: 6rem 0;
+    }
+    .res-form {
+      max-width: 680px;
+      margin: 3rem auto 0;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.4rem;
+    }
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 0.45rem;
+    }
+    .form-group.full { grid-column: 1 / -1; }
+    .form-label {
+      font-size: 0.65rem;
+      font-weight: 500;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--sage);
+    }
+    .form-input, .form-select, .form-textarea {
+      font-family: var(--font-body);
+      font-size: 0.92rem;
+      font-weight: 300;
+      color: var(--espresso);
+      background: var(--cream);
+      border: 1px solid rgba(107,122,80,0.25);
+      border-radius: 2px;
+      padding: 0.85rem 1rem;
+      outline: none;
+      transition: border-color 0.2s;
+      width: 100%;
+    }
+    .form-input:focus, .form-select:focus, .form-textarea:focus {
+      border-color: var(--sage);
+    }
+    .form-textarea { resize: vertical; min-height: 110px; }
+    .form-submit {
+      grid-column: 1 / -1;
+      justify-self: center;
+      margin-top: 0.5rem;
+    }
+    .form-note {
+      grid-column: 1 / -1;
+      font-size: 0.78rem;
+      color: var(--stone);
+      text-align: center;
+      font-style: italic;
+      font-family: var(--font-display);
+    }
+
+    /* ─── FOOTER ────────────────────────────────────────────────────── */
+    #footer {
+      background: var(--espresso);
+      color: var(--stone);
+      padding: 5rem 0 3rem;
+    }
+    .footer-top {
+      display: grid;
+      grid-template-columns: 1.5fr 1fr 1fr;
+      gap: 4rem;
+      padding-bottom: 4rem;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+    .footer-brand-name {
+      font-family: var(--font-display);
+      font-size: 2rem;
+      font-weight: 400;
+      color: var(--cream);
+      line-height: 1.1;
+      margin-bottom: 0.4rem;
+    }
+    .footer-brand-sub {
+      font-size: 0.62rem;
+      letter-spacing: 0.24em;
+      text-transform: uppercase;
+      color: var(--stone);
+      margin-bottom: 1.2rem;
+    }
+    .footer-tagline {
+      font-family: var(--font-display);
+      font-style: italic;
+      font-size: 1rem;
+      color: rgba(255,255,255,0.45);
+      font-weight: 300;
+      line-height: 1.6;
+    }
+    .footer-col-title {
+      font-family: var(--font-body);
+      font-size: 0.65rem;
+      font-weight: 500;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 1.2rem;
+    }
+    .footer-links {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.65rem;
+    }
+    .footer-links a {
+      font-size: 0.88rem;
+      font-weight: 300;
+      color: var(--stone);
+      transition: color 0.2s;
+    }
+    .footer-links a:hover { color: var(--cream); }
+    .footer-hours { font-size: 0.88rem; font-weight: 300; line-height: 1.8; }
+
+    .footer-bottom {
+      padding-top: 2.5rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .footer-copy {
+      font-size: 0.75rem;
+      color: rgba(255,255,255,0.3);
+    }
+    .footer-socials {
+      display: flex;
+      gap: 1rem;
+    }
+    .social-link {
+      width: 36px; height: 36px;
+      border: 1px solid rgba(255,255,255,0.15);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--stone);
+      transition: border-color 0.2s, color 0.2s;
+    }
+    .social-link:hover { border-color: var(--gold); color: var(--gold); }
+    .social-link svg { width: 16px; height: 16px; }
+
+    /* ─── REVEAL ANIMATION ──────────────────────────────────────────── */
+    .reveal {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.7s var(--ease), transform 0.7s var(--ease);
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: none;
+    }
+    .reveal-delay-1 { transition-delay: 0.1s; }
+    .reveal-delay-2 { transition-delay: 0.2s; }
+    .reveal-delay-3 { transition-delay: 0.3s; }
+    .reveal-delay-4 { transition-delay: 0.4s; }
+
+    /* ─── RESPONSIVE ────────────────────────────────────────────────── */
+    @media (max-width: 900px) {
+      #nav { padding: 0 1.5rem; }
+      .nav-links, .nav-cta { display: none; }
+      .hamburger { display: flex; }
+      .about-grid { grid-template-columns: 1fr; gap: 3rem; }
+      .about-image-wrap img { height: 380px; }
+      .find-grid { grid-template-columns: 1fr; gap: 3rem; }
+      .footer-top { grid-template-columns: 1fr; gap: 2.5rem; }
+      .gallery-grid {
+        grid-template-columns: 1fr;
+        grid-template-rows: auto auto auto;
+        height: auto;
+      }
+      .gallery-item--main { grid-row: auto; }
+      .gallery-item { height: 280px; }
+      .res-form { grid-template-columns: 1fr; }
+      .form-group.full { grid-column: 1; }
+      .form-submit { grid-column: 1; }
+      .form-note { grid-column: 1; }
+    }
+    @media (max-width: 640px) {
+      :root { --nav-h: 64px; }
+      .hero-title { font-size: 3rem; }
+      .hero-actions { flex-direction: column; align-items: center; }
+      .menu-tabs { overflow-x: auto; justify-content: flex-start; padding: 0 1rem; }
+      .container { padding: 0 1.25rem; }
+      .about-stats { grid-template-columns: 1fr 1fr; }
+      .footer-bottom { flex-direction: column; gap: 1.5rem; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .reveal { opacity: 1; transform: none; transition: none; }
+      .hero-bg { transform: none; transition: none; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ─────────────────────────────── NAV ─────────────────────────────── -->
+<nav id="nav" role="navigation" aria-label="Main navigation">
+  <a href="#hero" class="nav-logo" aria-label="The Farmer's Fork – back to top">
+    <img src="Gallery/Logo.jpg" alt="The Farmer's Fork logo" />
+  </a>
+  <ul class="nav-links">
+    <li><a href="#hero">Home</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#menu">Menu</a></li>
+    <li><a href="#gallery">Gallery</a></li>
+    <li><a href="#events">Events</a></li>
+    <li><a href="#find-us">Find Us</a></li>
+  </ul>
+  <a href="#reservations" class="nav-cta">Reserve a Table</a>
+  <button class="hamburger" aria-label="Toggle menu" onclick="toggleMenu()">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- Mobile menu -->
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#hero" onclick="toggleMenu()">Home</a>
+  <a href="#about" onclick="toggleMenu()">About</a>
+  <a href="#menu" onclick="toggleMenu()">Menu</a>
+  <a href="#gallery" onclick="toggleMenu()">Gallery</a>
+  <a href="#events" onclick="toggleMenu()">Events</a>
+  <a href="#find-us" onclick="toggleMenu()">Find Us</a>
+  <a href="#reservations" onclick="toggleMenu()">Reserve a Table</a>
+</div>
+
+<!-- ────────────────────────────── HERO ─────────────────────────────── -->
+<section id="hero" aria-label="Hero">
+  <div class="hero-bg"></div>
+  <div class="hero-overlay"></div>
+
+  <div class="hero-content">
+    <div class="hero-est">EST&nbsp;&nbsp;2021</div>
+
+    <!-- Crossed Fork SVG Emblem -->
+    <svg class="fork-emblem" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <line x1="22" y1="12" x2="58" y2="68" stroke="rgba(255,255,255,0.8)" stroke-width="1.5" stroke-linecap="round"/>
+      <line x1="58" y1="12" x2="22" y2="68" stroke="rgba(255,255,255,0.8)" stroke-width="1.5" stroke-linecap="round"/>
+      <!-- Fork left tines -->
+      <path d="M18 12 L18 30" stroke="rgba(255,255,255,0.8)" stroke-width="1.5" stroke-linecap="round"/>
+      <path d="M22 12 L22 30" stroke="rgba(255,255,255,0.8)" stroke-width="1.5" stroke-linecap="round"/>
+      <path d="M26 12 L26 30" stroke="rgba(255,255,255,0.8)" stroke-width="1.5" stroke-linecap="round"/>
+      <path d="M18 30 Q20 36 22 36 Q24 36 26 30" stroke="rgba(255,255,255,0.8)" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+      <!-- Fork right tines -->
+      <path d="M54 12 L54 30" stroke="rgba(255,255,255,0.8)" stroke-width="1.5" stroke-linecap="round"/>
+      <path d="M58 12 L58 30" stroke="rgba(255,255,255,0.8)" stroke-width="1.5" stroke-linecap="round"/>
+      <path d="M62 12 L62 30" stroke="rgba(255,255,255,0.8)" stroke-width="1.5" stroke-linecap="round"/>
+      <path d="M54 30 Q56 36 58 36 Q60 36 62 30" stroke="rgba(255,255,255,0.8)" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+    </svg>
+
+    <h1 class="hero-title">the <em>farmer's</em> fork</h1>
+    <p class="hero-subtitle">Restaurant &amp; Tapas Bar &nbsp;·&nbsp; Pretoria</p>
+    <div class="hero-divider"></div>
+    <p class="hero-tagline">Where good food brings people together</p>
+    <div class="hero-actions">
+      <a href="#menu" class="btn-primary">View Menu</a>
+      <a href="#reservations" class="btn-outline">Reserve a Table</a>
+    </div>
+  </div>
+
+  <div class="hero-scroll" aria-hidden="true">
+    <div class="hero-scroll-line"></div>
+    <span>Scroll</span>
+  </div>
+</section>
+
+<!-- ───────────────────────────── ABOUT ─────────────────────────────── -->
+<section id="about" aria-label="About us">
+  <div class="container">
+    <div class="fork-divider" aria-hidden="true">
+      <svg class="fork-divider-icon" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <line x1="10" y1="5" x2="30" y2="35" stroke="#B5A98A" stroke-width="1.2" stroke-linecap="round"/>
+        <line x1="30" y1="5" x2="10" y2="35" stroke="#B5A98A" stroke-width="1.2" stroke-linecap="round"/>
+        <path d="M8 5 L8 14" stroke="#B5A98A" stroke-width="1.2" stroke-linecap="round"/>
+        <path d="M12 5 L12 14" stroke="#B5A98A" stroke-width="1.2" stroke-linecap="round"/>
+        <path d="M8 14 Q10 18 12 14" stroke="#B5A98A" stroke-width="1.2" fill="none"/>
+        <path d="M28 5 L28 14" stroke="#B5A98A" stroke-width="1.2" stroke-linecap="round"/>
+        <path d="M32 5 L32 14" stroke="#B5A98A" stroke-width="1.2" stroke-linecap="round"/>
+        <path d="M28 14 Q30 18 32 14" stroke="#B5A98A" stroke-width="1.2" fill="none"/>
+      </svg>
+    </div>
+
+    <div class="about-grid">
+      <div class="about-image-wrap reveal">
+        <img src="Gallery/Scenery.jpg" alt="Outdoor dining area at The Farmer's Fork with branded umbrellas and vineyard views" loading="lazy" />
+        <div class="about-image-badge">
+          <span class="about-image-badge-year">2021</span>
+          <span class="about-image-badge-label">Est.</span>
+        </div>
+      </div>
+
+      <div class="about-text reveal reveal-delay-2">
+        <p class="about-eyebrow">Our Story</p>
+        <h2 class="about-heading">Food that brings<br/><em>people together</em></h2>
+        <p class="about-body">
+          We are a trendy, modern Restaurant &amp; Tapas Bar set against the lush fairways
+          of the Kimiad Golf Course in Moreleta Park, Pretoria. Our kitchen is inspired by
+          a genuine love of travel and good eating — flavours that cross continents, served
+          in a setting that feels like home.
+        </p>
+        <p class="about-body">
+          With our tapas — shared plates made for lingering — we create an atmosphere where
+          every meal is a gathering. Whether you're after a leisurely farmhouse breakfast,
+          hand-rolled pizza at lunch, or a round of cocktails at sunset, there is always a
+          seat at our table. Families, golf groups, and corporate celebrations are all
+          equally welcome.
+        </p>
+        <div class="about-stats">
+          <div>
+            <div class="stat-num">5</div>
+            <div class="stat-label">Years of flavour</div>
+          </div>
+          <div>
+            <div class="stat-num">60+</div>
+            <div class="stat-label">Menu dishes</div>
+          </div>
+          <div>
+            <div class="stat-num">★ 4.6</div>
+            <div class="stat-label">Guest rating</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ────────────────────────────── MENU ─────────────────────────────── -->
+<section id="menu" aria-label="Menu">
+  <div class="container">
+    <div class="fork-divider" style="padding: 4rem 0 0;" aria-hidden="true">
+      <svg class="fork-divider-icon" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <line x1="10" y1="5" x2="30" y2="35" stroke="rgba(107,122,80,0.5)" stroke-width="1.2" stroke-linecap="round"/>
+        <line x1="30" y1="5" x2="10" y2="35" stroke="rgba(107,122,80,0.5)" stroke-width="1.2" stroke-linecap="round"/>
+        <path d="M8 5 L8 14" stroke="rgba(107,122,80,0.5)" stroke-width="1.2" stroke-linecap="round"/>
+        <path d="M12 5 L12 14" stroke="rgba(107,122,80,0.5)" stroke-width="1.2" stroke-linecap="round"/>
+        <path d="M8 14 Q10 18 12 14" stroke="rgba(107,122,80,0.5)" stroke-width="1.2" fill="none"/>
+        <path d="M28 5 L28 14" stroke="rgba(107,122,80,0.5)" stroke-width="1.2" stroke-linecap="round"/>
+        <path d="M32 5 L32 14" stroke="rgba(107,122,80,0.5)" stroke-width="1.2" stroke-linecap="round"/>
+        <path d="M28 14 Q30 18 32 14" stroke="rgba(107,122,80,0.5)" stroke-width="1.2" fill="none"/>
+      </svg>
+    </div>
+
+    <p class="section-eyebrow reveal">The Menu</p>
+    <h2 class="section-heading light reveal reveal-delay-1">Something for <em>everyone</em></h2>
+    <p class="section-intro light reveal reveal-delay-2">
+      From farm-fresh breakfasts to slow-shared tapas plates — explore a menu
+      shaped by travel, seasonality, and a deep love of flavour.
+    </p>
+
+    <nav class="menu-tabs" aria-label="Menu categories">
+      <button class="tab-btn active" onclick="showTab('breakfast')" aria-selected="true">Breakfast</button>
+      <button class="tab-btn" onclick="showTab('mains')" aria-selected="false">Lunch &amp; Dinner</button>
+      <button class="tab-btn" onclick="showTab('tapas')" aria-selected="false">Tapas</button>
+      <button class="tab-btn" onclick="showTab('drinks')" aria-selected="false">Cocktails</button>
+    </nav>
+
+    <!-- BREAKFAST -->
+    <div id="tab-breakfast" class="tab-panel active">
+      <div class="menu-grid">
+        <div class="menu-item reveal">
+          <div class="menu-item-header">
+            <span class="menu-item-name">Boer se Bord</span>
+            <span class="menu-item-price">R 145</span>
+          </div>
+          <p class="menu-item-desc">Our signature farmhouse breakfast — two eggs your way, farm-cured bacon, boerewors, grilled tomato, sautéed mushrooms &amp; home-baked mieliebread.</p>
+          <span class="menu-item-tag">Signature</span>
+        </div>
+        <div class="menu-item reveal reveal-delay-1">
+          <div class="menu-item-header">
+            <span class="menu-item-name">Huevos Rancheros</span>
+            <span class="menu-item-price">R 115</span>
+          </div>
+          <p class="menu-item-desc">Spicy Mexican-style eggs set in a rich tomato &amp; chilli salsa on crispy tortillas, topped with avocado, feta &amp; fresh coriander.</p>
+        </div>
+        <div class="menu-item reveal reveal-delay-2">
+          <div class="menu-item-header">
+            <span class="menu-item-name">Eggs Benedict</span>
+            <span class="menu-item-price">R 110</span>
+          </div>
+          <p class="menu-item-desc">Perfectly poached eggs &amp; smoked salmon on a toasted English muffin, draped in velvety hollandaise with lemon zest &amp; capers.</p>
+        </div>
+        <div class="menu-item reveal reveal-delay-1">
+          <div class="menu-item-header">
+            <span class="menu-item-name">Pancake Stack</span>
+            <span class="menu-item-price">R 89</span>
+          </div>
+          <p class="menu-item-desc">Buttermilk pancakes layered with whipped cream, fresh seasonal berries &amp; a drizzle of local honey. Served with maple syrup.</p>
+        </div>
+        <div class="menu-item reveal reveal-delay-2">
+          <div class="menu-item-header">
+            <span class="menu-item-name">Avocado Toast</span>
+            <span class="menu-item-price">R 95</span>
+          </div>
+          <p class="menu-item-desc">House-baked sourdough loaded with smashed avocado, poached egg, dukkah, pickled radish &amp; a squeeze of lemon.</p>
+          <span class="menu-item-tag">Vegetarian</span>
+        </div>
+        <div class="menu-item reveal reveal-delay-3">
+          <div class="menu-item-header">
+            <span class="menu-item-name">Cappuccino</span>
+            <span class="menu-item-price">R 40</span>
+          </div>
+          <p class="menu-item-desc">Freshly ground single-origin South African beans, expertly pulled. Add a slice of our home-baked cake to complete the moment.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- MAINS -->
+    <div id="tab-mains" class="tab-panel">
+      <div class="menu-grid">
+        <div class="menu-item reveal">
+          <div class="menu-item-header">
+            <span class="menu-item-name">Buttermilk Fried Chicken Burger</span>
+            <span class="menu-item-price">R 155</span>
+          </div>
+          <p class="menu-item-desc">Crispy buttermilk-brined chicken thigh, house slaw, pickles, sriracha mayo &amp; hand-cut chips. A crowd favourite on the Kimiad fairway.</p>
+          <span class="menu-item-tag">Best Seller</span>
+        </div>
+        <div class="menu-item reveal reveal-delay-1">
+          <div class="menu-item-header">
+            <span class="menu-item-name">Wood-Fired Margherita Pizza</span>
+            <span class="menu-item-price">R 135</span>
+          </div>
+          <p class="menu-item-desc">Hand-rolled dough with San Marzano tomato, fresh buffalo mozzarella, basil oil &amp; flaked sea salt. Simple, perfect.</p>
+          <span class="menu-item-tag">Vegetarian</span>
+        </div>
+        <div class="menu-item reveal reveal-delay-2">
+          <div class="menu-item-header">
+            <span class="menu-item-name">Cashew Nut Chicken Curry</span>
+            <span class="menu-item-price">R 170</span>
+          </div>
+          <p class="menu-item-desc">Slow-simmered coconut &amp; cashew curry with fragrant spices, served with jasmine rice, roti &amp; a cooling cucumber raita.</p>
+          <span class="menu-item-tag">Fan Favourite</span>
+        </div>
+        <div class="menu-item reveal reveal-delay-1">
+          <div class="menu-item-header">
+            <span class="menu-item-name">Crispy Pork Belly — Asian Style</span>
+            <span class="menu-item-price">R 185</span>
+          </div>
+          <p class="menu-item-desc">Slow-roasted pork belly with crackling, served on pickled cucumber, sesame slaw, hoisin glaze &amp; steamed bao bun.</p>
+        </div>
+        <div class="menu-item reveal reveal-delay-2">
+          <div class="menu-item-header">
+            <span class="menu-item-name">Garden Falafel Bowl</span>
+            <span class="menu-item-price">R 130</span>
+          </div>
+          <p class="menu-item-desc">Fresh-from-the-garden salad with house-made falafel, hummus, roasted chickpeas, tahini dressing &amp; pomegranate seeds.</p>
+          <span class="menu-item-tag">Vegetarian</span>
+        </div>
+        <div class="menu-item reveal reveal-delay-3">
+          <div class="menu-item-header">
+            <span class="menu-item-name">Chicken Schnitzel</span>
+            <span class="menu-item-price">R 160</span>
+          </div>
+          <p class="menu-item-desc">Lightly crumbed free-range chicken breast, pan-fried golden, with hand-cut chips, tomato relish &amp; a dressed garden salad.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- TAPAS -->
+    <div id="tab-tapas" class="tab-panel">
+      <div class="menu-grid">
+        <div class="menu-item reveal">
+          <div class="menu-item-header">
+            <span class="menu-item-name">Farmer's Vegan Board</span>
+            <span class="menu-item-price">R 100</span>
+          </div>
+          <p class="menu-item-desc">Whipped vegan lebneh, pickles, deep fried capers, beetroot hummus, butternut chutney, dukkah dip and warm flatbread.</p>
+          <span class="menu-item-tag">Vegan</span>
+        </div>
+        <div class="menu-item reveal reveal-delay-1">
+          <div class="menu-item-header">
+            <span class="menu-item-name">Coxinha <em style="font-style:italic;font-size:0.78rem;color:var(--stone);">(ko-SHEEN-ya)</em></span>
+            <span class="menu-item-price">R 90</span>
+          </div>
+          <p class="menu-item-desc">Creamy chicken filling in dough, crumbed and fried. Served with lebneh.</p>
+        </div>
+        <div class="menu-item reveal reveal-delay-2">
+          <div class="menu-item-header">
+            <span class="menu-item-name">Arancini</span>
+            <span class="menu-item-price">R 90</span>
+          </div>
+          <p class="menu-item-desc">Crispy risotto balls with bacon and wild mushrooms, crumbed and fried. Served with aioli.</p>
+        </div>
+        <div class="menu-item reveal reveal-delay-1">
+          <div class="menu-item-header">
+            <span class="menu-item-name">Falafel</span>
+            <span class="menu-item-price">R 80</span>
+          </div>
+          <p class="menu-item-desc">Chickpea, butternut and sweet potato balls, crumbed and fried. Served with spicy peppadew jam and fresh mint.</p>
+          <span class="menu-item-tag">Vegetarian</span>
+        </div>
+        <div class="menu-item reveal reveal-delay-2">
+          <div class="menu-item-header">
+            <span class="menu-item-name">Fish Parcels</span>
+            <span class="menu-item-price">R 90</span>
+          </div>
+          <p class="menu-item-desc">Spicy fish balls, served with salsa and aioli.</p>
+        </div>
+        <div class="menu-item reveal reveal-delay-3">
+          <div class="menu-item-header">
+            <span class="menu-item-name">Nonna's Meatballs</span>
+            <span class="menu-item-price">R 100</span>
+          </div>
+          <p class="menu-item-desc">Beef and pork meatballs in Napolitana sauce served with warm flatbread.</p>
+        </div>
+        <div class="menu-item reveal reveal-delay-1">
+          <div class="menu-item-header">
+            <span class="menu-item-name">Parmesan Chicken Strips</span>
+            <span class="menu-item-price">R 100</span>
+          </div>
+          <p class="menu-item-desc">Marinated chicken breast, crumbed and fried. Served with Parmesan cheese and smoked paprika aioli.</p>
+        </div>
+        <div class="menu-item reveal reveal-delay-2">
+          <div class="menu-item-header">
+            <span class="menu-item-name">Jalapeño Poppers</span>
+            <span class="menu-item-price">R 100</span>
+          </div>
+          <p class="menu-item-desc">Feta-stuffed jalapeños wrapped in bacon, crumbed and fried. Served with spicy peppadew jam.</p>
+        </div>
+      </div>
+      <p style="text-align:center;font-family:var(--font-display);font-style:italic;color:var(--gold-lt);margin-top:2.5rem;font-size:1rem;">
+        Our Tapas are prepared fresh and designed for sharing with good people.
+      </p>
+    </div>
+
+    <!-- COCKTAILS -->
+    <div id="tab-drinks" class="tab-panel">
+      <div class="menu-grid">
+        <div class="menu-item reveal">
+          <div class="menu-item-header">
+            <span class="menu-item-name">Farmhouse Spritz</span>
+            <span class="menu-item-price">R 90</span>
+          </div>
+          <p class="menu-item-desc">Gin, rooibos &amp; orange cordial, bubbles.</p>
+          <p style="font-size:0.75rem;color:var(--stone);margin-top:0.5rem;font-style:italic;">Bright · Easy · Social</p>
+        </div>
+        <div class="menu-item reveal reveal-delay-1">
+          <div class="menu-item-header">
+            <span class="menu-item-name">Ginger Trouble</span>
+            <span class="menu-item-price">R 110</span>
+          </div>
+          <p class="menu-item-desc">Tequila, house ginger ferment, grapefruit, smoked sea salt.</p>
+          <p style="font-size:0.75rem;color:var(--stone);margin-top:0.5rem;font-style:italic;">Spicy · Fresh · Dangerous</p>
+        </div>
+        <div class="menu-item reveal reveal-delay-2">
+          <div class="menu-item-header">
+            <span class="menu-item-name">Pineapple Please</span>
+            <span class="menu-item-price">R 90</span>
+          </div>
+          <p class="menu-item-desc">Vodka, pineapple &amp; chilli shrub, lemon, aquafaba.</p>
+          <p style="font-size:0.75rem;color:var(--stone);margin-top:0.5rem;font-style:italic;">Playful · Silky · Unexpected</p>
+        </div>
+        <div class="menu-item reveal reveal-delay-1">
+          <div class="menu-item-header">
+            <span class="menu-item-name">Garden Party <em style="font-style:italic;font-size:0.78rem;color:var(--stone);">(no alcohol)</em></span>
+            <span class="menu-item-price">R 75</span>
+          </div>
+          <p class="menu-item-desc">Garden herb infusion, lemon, soda.</p>
+          <p style="font-size:0.75rem;color:var(--stone);margin-top:0.5rem;font-style:italic;">Fresh · Elegant · Inclusive</p>
+          <span class="menu-item-tag">Non-Alcoholic</span>
+        </div>
+        <div class="menu-item reveal reveal-delay-2">
+          <div class="menu-item-header">
+            <span class="menu-item-name">Plaas Tee <em style="font-style:italic;font-size:0.78rem;color:var(--stone);">(no alcohol)</em></span>
+            <span class="menu-item-price">R 45</span>
+          </div>
+          <p class="menu-item-desc">Rooibos, honey, lemon.</p>
+          <p style="font-size:0.75rem;color:var(--stone);margin-top:0.5rem;font-style:italic;">Homemade · Refreshing</p>
+          <span class="menu-item-tag">Non-Alcoholic</span>
+        </div>
+      </div>
+    </div>
+
+    <p class="menu-note reveal">As we make everything from scratch and prepare limited quantities to ensure we only serve farm-fresh goodness, we may sometimes run out of some items on the menu.</p>
+  </div>
+</section>
+
+<!-- ──────────────────────────── GALLERY ─────────────────────────────── -->
+<section id="gallery" aria-label="Gallery">
+  <div class="container">
+    <div class="fork-divider" aria-hidden="true">
+      <svg class="fork-divider-icon" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <line x1="10" y1="5" x2="30" y2="35" stroke="#B5A98A" stroke-width="1.2" stroke-linecap="round"/>
+        <line x1="30" y1="5" x2="10" y2="35" stroke="#B5A98A" stroke-width="1.2" stroke-linecap="round"/>
+        <path d="M8 5 L8 14" stroke="#B5A98A" stroke-width="1.2" stroke-linecap="round"/>
+        <path d="M12 5 L12 14" stroke="#B5A98A" stroke-width="1.2" stroke-linecap="round"/>
+        <path d="M8 14 Q10 18 12 14" stroke="#B5A98A" stroke-width="1.2" fill="none"/>
+        <path d="M28 5 L28 14" stroke="#B5A98A" stroke-width="1.2" stroke-linecap="round"/>
+        <path d="M32 5 L32 14" stroke="#B5A98A" stroke-width="1.2" stroke-linecap="round"/>
+        <path d="M28 14 Q30 18 32 14" stroke="#B5A98A" stroke-width="1.2" fill="none"/>
+      </svg>
+    </div>
+    <p class="section-eyebrow reveal">Our Space</p>
+    <h2 class="section-heading reveal reveal-delay-1">A place to <em>linger</em></h2>
+
+    <div class="gallery-grid">
+      <div class="gallery-item gallery-item--main reveal">
+        <img src="Gallery/Food 3.jpg" alt="Menu Item" loading="lazy" />
+        <div class="gallery-caption">Menu Item</div>
+      </div>
+      <div class="gallery-item reveal reveal-delay-1">
+        <img src="Gallery/Brandy Special.jpg" alt="Brandy Special" loading="lazy" />
+        <div class="gallery-caption">Brandy Special</div>
+      </div>
+      <div class="gallery-item reveal reveal-delay-2">
+        <img src="Gallery/Food.jpg" alt="Weekend Specials" loading="lazy" />
+        <div class="gallery-caption">Weekend Specials</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ──────────────────────────── EVENTS ─────────────────────────────── -->
+<section id="events" aria-label="Events and functions">
+  <div class="events-bg"></div>
+  <div class="events-overlay"></div>
+  <div class="container">
+    <div class="events-content">
+      <p class="events-eyebrow reveal">Functions &amp; Events</p>
+      <h2 class="events-heading reveal reveal-delay-1">Celebrate <em>life's finest</em><br/>moments with us</h2>
+      <p class="events-body reveal reveal-delay-2">
+        From intimate birthday dinners to wedding receptions and corporate sundowners,
+        The Farmer's Fork provides a uniquely warm and characterful setting for any occasion.
+        Our outdoor spaces, string lights, and welcoming team make every event memorable.
+      </p>
+      <ul class="events-features reveal reveal-delay-2">
+        <li class="events-feature">Weddings &amp; Receptions</li>
+        <li class="events-feature">Birthday &amp; Anniversary Celebrations</li>
+        <li class="events-feature">Corporate Sundowners &amp; Team Lunches</li>
+        <li class="events-feature">Cocktail Parties &amp; Tapas Evenings</li>
+        <li class="events-feature">Golf Day Catering at Kimiad</li>
+      </ul>
+      <a href="tel:+27828583984" class="btn-primary reveal reveal-delay-3">Enquire About Functions</a>
+    </div>
+  </div>
+</section>
+
+<!-- ──────────────────────────── FIND US ─────────────────────────────── -->
+<section id="find-us" aria-label="Hours and location">
+  <div class="container">
+    <div class="fork-divider" aria-hidden="true">
+      <svg class="fork-divider-icon" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <line x1="10" y1="5" x2="30" y2="35" stroke="#B5A98A" stroke-width="1.2" stroke-linecap="round"/>
+        <line x1="30" y1="5" x2="10" y2="35" stroke="#B5A98A" stroke-width="1.2" stroke-linecap="round"/>
+        <path d="M8 5 L8 14" stroke="#B5A98A" stroke-width="1.2" stroke-linecap="round"/>
+        <path d="M12 5 L12 14" stroke="#B5A98A" stroke-width="1.2" stroke-linecap="round"/>
+        <path d="M8 14 Q10 18 12 14" stroke="#B5A98A" stroke-width="1.2" fill="none"/>
+        <path d="M28 5 L28 14" stroke="#B5A98A" stroke-width="1.2" stroke-linecap="round"/>
+        <path d="M32 5 L32 14" stroke="#B5A98A" stroke-width="1.2" stroke-linecap="round"/>
+        <path d="M28 14 Q30 18 32 14" stroke="#B5A98A" stroke-width="1.2" fill="none"/>
+      </svg>
+    </div>
+    <p class="section-eyebrow reveal">Hours &amp; Location</p>
+    <h2 class="section-heading reveal reveal-delay-1">Come <em>find us</em></h2>
+
+    <div class="find-grid">
+      <div class="hours-card reveal">
+        <h3 class="hours-card-title">Opening Hours</h3>
+        <div class="hours-row">
+          <span class="hours-day">Monday</span>
+          <span class="hours-closed">Closed</span>
+        </div>
+        <div class="hours-row">
+          <span class="hours-day">Tuesday – Friday</span>
+          <span class="hours-time">08:00 – 20:00</span>
+        </div>
+        <div class="hours-row">
+          <span class="hours-day">Saturday</span>
+          <span class="hours-time">08:00 – 20:00</span>
+        </div>
+        <div class="hours-row">
+          <span class="hours-day">Sunday</span>
+          <span class="hours-time">10:00 – 15:00</span>
+        </div>
+        <div style="margin-top: 2rem; padding-top: 1.5rem; border-top: 1px solid rgba(255,255,255,0.08); font-size:0.8rem; color: var(--stone); font-weight:300; line-height:1.7;">
+          Takeaways available during all open hours.<br/>
+          Public holiday hours may vary — check our Facebook page for updates.
+        </div>
+      </div>
+
+      <div class="contact-block reveal reveal-delay-2">
+        <div>
+          <h3 class="contact-heading">Get in Touch</h3>
+        </div>
+        <div class="contact-detail">
+          <div class="contact-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="var(--sage)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
+              <circle cx="12" cy="10" r="3"/>
+            </svg>
+          </div>
+          <div>
+            <div class="contact-label">Address</div>
+            <div class="contact-value">697 Wekker Road, Kimiad Golf Course<br/>Moreleta Park, Pretoria</div>
+          </div>
+        </div>
+        <div class="contact-detail">
+          <div class="contact-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="var(--sage)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.7 3.44 2 2 0 0 1 3.67 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/>
+            </svg>
+          </div>
+          <div>
+            <div class="contact-label">Phone</div>
+            <div class="contact-value"><a href="tel:+27828583984" style="color:var(--espresso);">+27 82 858 3984</a></div>
+          </div>
+        </div>
+        <div class="contact-detail">
+          <div class="contact-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="var(--sage)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/>
+            </svg>
+          </div>
+          <div>
+            <div class="contact-label">Facebook</div>
+            <div class="contact-value"><a href="https://www.facebook.com/thefarmersforkrestaurant/" target="_blank" rel="noopener" style="color:var(--espresso);">@thefarmersforkrestaurant</a></div>
+          </div>
+        </div>
+        <div class="contact-detail">
+          <div class="contact-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="var(--sage)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
+              <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/>
+              <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/>
+            </svg>
+          </div>
+          <div>
+            <div class="contact-label">Instagram</div>
+            <div class="contact-value"><a href="https://www.instagram.com/farmersforkrestaurantpretoria/" target="_blank" rel="noopener" style="color:var(--espresso);">@farmersforkrestaurant</a></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Map -->
+    <div class="map-placeholder reveal" style="margin-top:4rem;">
+      <iframe
+        src="https://maps.google.com/maps?q=Kimiad+Golf+Course,+Wekker+Road,+Moreleta+Park,+Pretoria,+South+Africa&t=&z=15&ie=UTF8&iwloc=&output=embed"
+        allowfullscreen=""
+        loading="lazy"
+        referrerpolicy="no-referrer-when-downgrade"
+        title="Map to The Farmer's Fork Restaurant, Kimiad Golf Course, Pretoria"
+        aria-label="Google Map showing the location of The Farmer's Fork Restaurant">
+      </iframe>
+    </div>
+  </div>
+</section>
+
+<!-- ────────────────────────── RESERVATIONS ──────────────────────────── -->
+<section id="reservations" aria-label="Reservations">
+  <div class="container">
+    <div class="fork-divider" aria-hidden="true">
+      <svg class="fork-divider-icon" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <line x1="10" y1="5" x2="30" y2="35" stroke="#B5A98A" stroke-width="1.2" stroke-linecap="round"/>
+        <line x1="30" y1="5" x2="10" y2="35" stroke="#B5A98A" stroke-width="1.2" stroke-linecap="round"/>
+        <path d="M8 5 L8 14" stroke="#B5A98A" stroke-width="1.2" stroke-linecap="round"/>
+        <path d="M12 5 L12 14" stroke="#B5A98A" stroke-width="1.2" stroke-linecap="round"/>
+        <path d="M8 14 Q10 18 12 14" stroke="#B5A98A" stroke-width="1.2" fill="none"/>
+        <path d="M28 5 L28 14" stroke="#B5A98A" stroke-width="1.2" stroke-linecap="round"/>
+        <path d="M32 5 L32 14" stroke="#B5A98A" stroke-width="1.2" stroke-linecap="round"/>
+        <path d="M28 14 Q30 18 32 14" stroke="#B5A98A" stroke-width="1.2" fill="none"/>
+      </svg>
+    </div>
+    <p class="section-eyebrow reveal">Reserve a Table</p>
+    <h2 class="section-heading reveal reveal-delay-1">Join us for <em>a meal</em></h2>
+    <p class="section-intro reveal reveal-delay-2">
+      Book ahead to guarantee your table, especially on weekends. Walk-ins are
+      always welcome, subject to availability.
+    </p>
+
+    <div class="res-form" role="form" aria-label="Table reservation form">
+      <div class="form-group">
+        <label class="form-label" for="fname">First Name</label>
+        <input class="form-input" type="text" id="fname" name="first_name" placeholder="Jane" autocomplete="given-name" />
+      </div>
+      <div class="form-group">
+        <label class="form-label" for="lname">Last Name</label>
+        <input class="form-input" type="text" id="lname" name="last_name" placeholder="Smith" autocomplete="family-name" />
+      </div>
+      <div class="form-group">
+        <label class="form-label" for="email">Email Address</label>
+        <input class="form-input" type="email" id="email" name="email" placeholder="jane@email.com" autocomplete="email" />
+      </div>
+      <div class="form-group">
+        <label class="form-label" for="phone">Phone Number</label>
+        <input class="form-input" type="tel" id="phone" name="phone" placeholder="+27 82 000 0000" autocomplete="tel" />
+      </div>
+      <div class="form-group">
+        <label class="form-label" for="date">Preferred Date</label>
+        <input class="form-input" type="date" id="date" name="date" />
+      </div>
+      <div class="form-group">
+        <label class="form-label" for="time">Preferred Time</label>
+        <select class="form-select" id="time" name="time">
+          <option value="">Select a time</option>
+          <option>08:00</option><option>08:30</option><option>09:00</option>
+          <option>09:30</option><option>10:00</option><option>10:30</option>
+          <option>11:00</option><option>11:30</option><option>12:00</option>
+          <option>12:30</option><option>13:00</option><option>13:30</option>
+          <option>14:00</option><option>14:30</option><option>15:00</option>
+          <option>15:30</option><option>16:00</option><option>16:30</option>
+          <option>17:00</option><option>17:30</option><option>18:00</option>
+          <option>18:30</option><option>19:00</option><option>19:30</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label class="form-label" for="guests">Number of Guests</label>
+        <select class="form-select" id="guests" name="guests">
+          <option>1 – 2 guests</option>
+          <option>3 – 4 guests</option>
+          <option>5 – 6 guests</option>
+          <option>7 – 10 guests</option>
+          <option>10+ guests (Function)</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label class="form-label" for="occasion">Occasion</label>
+        <select class="form-select" id="occasion" name="occasion">
+          <option value="">No special occasion</option>
+          <option>Birthday</option>
+          <option>Anniversary</option>
+          <option>Business Lunch</option>
+          <option>Wedding / Function</option>
+          <option>Other</option>
+        </select>
+      </div>
+      <div class="form-group full">
+        <label class="form-label" for="notes">Special Requests or Dietary Requirements</label>
+        <textarea class="form-textarea" id="notes" name="notes" placeholder="Let us know about allergies, seating preferences, or anything else we should know…"></textarea>
+      </div>
+      <div class="form-group full form-submit">
+        <button type="submit" class="btn-primary" style="padding: 1rem 3rem; font-size:0.78rem;" onclick="handleReservation(event)">
+          Request Reservation
+        </button>
+      </div>
+      <p class="form-note">We'll confirm your booking within 24 hours by phone or email.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ────────────────────────────── FOOTER ───────────────────────────── -->
+<footer id="footer" aria-label="Site footer">
+  <div class="container">
+    <div class="footer-top">
+      <div>
+        <a href="#hero" aria-label="The Farmer's Fork – back to top" style="display:inline-block;margin-bottom:1.2rem;">
+          <img src="Gallery/Logo.jpg" alt="The Farmer's Fork logo" style="width:110px;height:110px;border-radius:50%;object-fit:cover;display:block;" />
+        </a>
+        <p class="footer-tagline">
+          Influenced by travel &amp; love for all things food.<br/>
+          Serving Pretoria, one shared plate at a time.<br/><br/>
+          <em style="font-size:0.8rem;letter-spacing:0.1em;color:var(--gold);font-style:normal;">Good Food, Good Vibes, Good People.</em>
+        </p>
+      </div>
+      <div>
+        <div class="footer-col-title">Navigate</div>
+        <ul class="footer-links">
+          <li><a href="#hero">Home</a></li>
+          <li><a href="#about">About Us</a></li>
+          <li><a href="#menu">Our Menu</a></li>
+          <li><a href="#gallery">Gallery</a></li>
+          <li><a href="#events">Functions &amp; Events</a></li>
+          <li><a href="#find-us">Find Us</a></li>
+          <li><a href="#reservations">Reserve a Table</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer-col-title">Hours</div>
+        <div class="footer-hours">
+          Mon: Closed<br/>
+          Tue – Sat: 08:00 – 20:00<br/>
+          Sun: 10:00 – 15:00<br/><br/>
+          <strong style="color:var(--cream); font-weight:400;">697 Wekker Road</strong><br/>
+          Kimiad Golf Course<br/>
+          Moreleta Park, Pretoria<br/><br/>
+          <a href="tel:+27828583984" style="color:var(--gold);">+27 82 858 3984</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <span class="footer-copy">© 2025 The Farmer's Fork Restaurant &amp; Tapas Bar. All rights reserved.</span>
+      <span class="footer-copy">Site by <a href="https://baloyi.netlify.app/" target="_blank" rel="noopener" style="color:var(--gold);">Bee_Shotss</a></span>
+      <div class="footer-socials" aria-label="Social media links">
+        <!-- Facebook -->
+        <a href="https://www.facebook.com/thefarmersforkrestaurant/" class="social-link" target="_blank" rel="noopener" aria-label="Facebook">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/>
+          </svg>
+        </a>
+        <!-- Instagram -->
+        <a href="https://www.instagram.com/farmersforkrestaurantpretoria/" class="social-link" target="_blank" rel="noopener" aria-label="Instagram">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
+            <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/>
+            <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/>
+          </svg>
+        </a>
+        <!-- Phone -->
+        <a href="tel:+27828583984" class="social-link" aria-label="Call us">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.7 3.44 2 2 0 0 1 3.67 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/>
+          </svg>
+        </a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- ─────────────────────────── SCRIPTS ─────────────────────────────── -->
+<script>
+  /* Nav scroll behaviour */
+  const nav = document.getElementById('nav');
+  window.addEventListener('scroll', () => {
+    nav.classList.toggle('scrolled', window.scrollY > 60);
+  }, { passive: true });
+
+  /* Mobile menu toggle */
+  function toggleMenu() {
+    document.getElementById('mobileMenu').classList.toggle('open');
+  }
+
+  /* Menu tabs */
+  function showTab(name) {
+    document.querySelectorAll('.tab-btn').forEach(b => {
+      b.classList.toggle('active', b.getAttribute('onclick').includes(name));
+      b.setAttribute('aria-selected', b.getAttribute('onclick').includes(name));
+    });
+    document.querySelectorAll('.tab-panel').forEach(p => {
+      p.classList.toggle('active', p.id === `tab-${name}`);
+    });
+  }
+
+  /* Scroll reveal */
+  const revealEls = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        io.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.12 });
+  revealEls.forEach(el => io.observe(el));
+
+  /* Reservation form */
+  function handleReservation(e) {
+    e.preventDefault();
+    const fname = document.getElementById('fname').value.trim();
+    if (!fname) { alert('Please enter your name.'); return; }
+    const date  = document.getElementById('date').value;
+    if (!date)  { alert('Please select a date.'); return; }
+    alert(`Thank you, ${fname}! We've received your reservation request for ${new Date(date).toLocaleDateString('en-ZA', { weekday:'long', day:'numeric', month:'long', year:'numeric' })}. We'll confirm within 24 hours.`);
+  }
+
+  /* Active nav link highlighting */
+  const sections = document.querySelectorAll('section[id]');
+  const navLinks  = document.querySelectorAll('.nav-links a');
+  window.addEventListener('scroll', () => {
+    let current = '';
+    sections.forEach(s => {
+      if (window.scrollY >= s.offsetTop - 120) current = s.getAttribute('id');
+    });
+    navLinks.forEach(a => {
+      a.style.color = a.getAttribute('href') === `#${current}` ? 'var(--gold-lt)' : '';
+      a.style.opacity = a.getAttribute('href') === `#${current}` ? '1' : '';
+    });
+  }, { passive: true });
+</script>
+
+</body>
+</html>
