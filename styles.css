@@ -85,12 +85,13 @@ img{display:block;max-width:100%}
 .menu-tab{background:transparent;color:#aaa;border:1px solid var(--line);padding:11px 15px;text-transform:uppercase;font-size:10px;letter-spacing:1.5px}
 .menu-tab.active,.menu-tab:hover{background:var(--white);color:var(--black);border-color:var(--white)}
 .menu-grid{display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid var(--line);border-left:1px solid var(--line)}
-.menu-item{min-height:190px;padding:26px;border-right:1px solid var(--line);border-bottom:1px solid var(--line);position:relative;transition:.25s}
+.menu-item{min-height:190px;padding:26px;border-right:1px solid var(--line);border-bottom:1px solid var(--line);position:relative;transition:.25s;display:flex;flex-direction:column}
 .menu-item:hover{background:#121212;transform:translateY(-2px)}
 .menu-item .number{font-size:10px;color:#666;letter-spacing:2px}
 .menu-item h3{font-family:var(--display);font-size:32px;margin:25px 0 8px;text-transform:uppercase}
 .menu-item p{font-size:12px;color:#999;margin:0;max-width:330px}
 .menu-item .tag{position:absolute;right:20px;top:20px;font-size:9px;letter-spacing:1px;color:#aaa;border:1px solid var(--line);padding:5px 7px}
+.menu-item .price{margin-top:auto;padding-top:12px;font-family:var(--display);font-size:24px;font-weight:700;color:var(--white);letter-spacing:.5px;line-height:1}
 .menu-note{display:grid;grid-template-columns:160px 1fr;gap:25px;margin-top:30px;color:#777;border-top:1px solid var(--line);padding-top:18px;font-size:11px}
 .menu-note span{font-size:9px;letter-spacing:2px;color:#aaa}
 .menu-note p{margin:0}
