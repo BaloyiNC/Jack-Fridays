@@ -1,0 +1,21 @@
+{
+  "name": "Jack Friday's Gourmet Sports Lounge",
+  "short_name": "Jack Friday's",
+  "description": "Gourmet pub food, live sport and great atmosphere in Moreleta Park, Pretoria.",
+  "start_url": "/",
+  "display": "browser",
+  "theme_color": "#080808",
+  "background_color": "#080808",
+  "icons": [
+    {
+      "src": "apple-touch-icon.png",
+      "sizes": "180x180",
+      "type": "image/png"
+    },
+    {
+      "src": "favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml"
+    }
+  ]
+}
